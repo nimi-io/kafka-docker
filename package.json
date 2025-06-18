@@ -1,0 +1,33 @@
+{
+  "name": "kafka-test",
+  "version": "1.0.0",
+  "description": "JavaScript script to test Kafka functionality",
+  "main": "test-kafka.js",
+  "scripts": {
+    "test": "node test-kafka.js",
+    "test:rdkafka": "node test-rdkafka.js",
+    "test:single": "node test-single.js",
+    "producer": "node producer.js",
+    "producer:rdkafka": "node producer-rdkafka.js",
+    "consumer": "node consumer.js",
+    "consumer:rdkafka": "node consumer-rdkafka.js",
+    "admin": "node admin.js",
+    "install:pnpm": "pnpm install",
+    "dev": "pnpm run producer & pnpm run consumer",
+    "dev:rdkafka": "pnpm run producer:rdkafka & pnpm run consumer:rdkafka"
+  },
+  "packageManager": "pnpm@8.0.0",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "kafkajs": "^2.2.4",
+    "node-rdkafka": "^3.4.1"
+  },
+  "keywords": [
+    "kafka",
+    "test",
+    "javascript",
+    "kafkajs"
+  ],
+  "author": "",
+  "license": "MIT"
+}
