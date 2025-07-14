@@ -30,18 +30,23 @@ services:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://157.230.178.87:9093
+      # FIXED: Use the sslip.io domain instead of raw IP
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://s848kcw0sogkks8gg48o8gos.138.197.129.114.sslip.io:9093
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092,PLAINTEXT_HOST://0.0.0.0:9093
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_CONFLUENT_SCHEMA_REGISTRY_URL: http://schema-registry:8081
       KAFKA_JMX_PORT: 9101
-      KAFKA_JMX_HOSTNAME: 157.230.178.87
+      # FIXED: Use the sslip.io domain for JMX as well
+      KAFKA_JMX_HOSTNAME: s848kcw0sogkks8gg48o8gos.138.197.129.114.sslip.io
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
       KAFKA_LOG_RETENTION_HOURS: 168
       KAFKA_LOG_SEGMENT_BYTES: 1073741824
       KAFKA_LOG_RETENTION_CHECK_INTERVAL_MS: 300000
+      # ADDED: Increase timeout to help with connection issues
+      KAFKA_REPLICA_FETCH_MAX_WAIT_MS: 500
+      KAFKA_CONTROLLER_SOCKET_TIMEOUT_MS: 40000
     volumes:
       - kafka-data:/var/lib/kafka/data
     networks:
@@ -76,7 +81,6 @@ services:
     container_name: kafka-ui
     depends_on:
       - kafka
-      - schema-registry
     ports:
       - "8083:8080"
     environment:
