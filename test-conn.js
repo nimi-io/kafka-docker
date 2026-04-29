@@ -3,7 +3,7 @@ const { Kafka } = require('kafkajs');
 async function testKafkaConnection() {
     const kafka = new Kafka({
         clientId: 'test-client',
-        brokers: ['s848kcw0sogkks8gg48o8gos.138.197.129.114.sslip.io:9093'],
+        brokers: ['i0k00ckoc8kgc0ck8gok48og.157.245.36.213.sslip.io:9093'],
         connectionTimeout: 10000,
         requestTimeout: 30000,
     });
